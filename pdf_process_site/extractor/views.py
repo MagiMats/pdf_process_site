@@ -9,6 +9,7 @@ def HomeView(request):
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
 
-            print(name, email)
+            print('name: '+ str(name))
+            print('email: ' + str(email))
 
     return render(request, 'extractor\home.html', {'test':UploadForm})
