@@ -1,7 +1,7 @@
 from django import forms
+from django.core import validators
 
 class UploadForm(forms.Form):
-    title = "Upload your stuff here please!"
-    name = forms.CharField(max_length=50)
+    name = forms.CharField(max_length=5)
     email = forms.EmailField()
     

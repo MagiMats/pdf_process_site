@@ -3,14 +3,13 @@
 {% block title %}Homepage{% endblock title %}
 
 {% block content %}
-<form action="{% url 'home' %}" method="post">{% csrf_token %}
-    <h1>{{test.title}}</h1>
-    {% for field in test %}
-    <div class="fieldWrapper">
-        {{ field.errors }}
-        {{ field.label_tag }} {{ field }}
-    </div>
-{% endfor %}
-<input type="submit" value="Submit">
-</form>
+    <h1>test</h1>
+    <form method="post" action="{% url 'home' %}"> {% csrf_token %}
+
+        {{form.as_p}}   
+        {{form.non_field_errors}} 
+        <input value="Submit" type="submit">
+    </form>
+
+
 {% endblock content %}
