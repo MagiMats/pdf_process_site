@@ -4,4 +4,5 @@ from django.core import validators
 class UploadForm(forms.Form):
     name = forms.CharField(max_length=50)
     email = forms.EmailField(widget=forms.TextInput(attrs={'type': 'text'}) )
+    upload = forms.FileField()
     
