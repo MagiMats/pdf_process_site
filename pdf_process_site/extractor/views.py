@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import UploadForm
 from .apps import handle_upload
+from .scripts import NotionLoad
 from django.http import HttpResponseRedirect
 
 # Create your views here.
@@ -17,7 +18,9 @@ def HomeView(request):
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
             upload = form.cleaned_data["upload"]
+            database_url = form.cleaned_data["database_url"]
             handle_upload(request.FILES["upload"])
+            NotionLoad()
 
             return HttpResponseRedirect('/succes/')
             
