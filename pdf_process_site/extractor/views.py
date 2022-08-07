@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import UploadForm
 from .apps import handle_upload
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 def HomeView(request):
@@ -18,6 +19,9 @@ def HomeView(request):
             upload = form.cleaned_data["upload"]
             handle_upload(request.FILES["upload"])
 
-    
+            return HttpResponseRedirect('/succes/')
+            
     return render(request, 'extractor\home.html', context={'form': form})
 
+def SuccesView(request):
+    return render(request, 'extractor\succes.html')
