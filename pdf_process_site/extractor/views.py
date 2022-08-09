@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from .forms import UploadForm
 from .apps import handle_upload
-from .scripts import NotionLoad
 from django.http import HttpResponseRedirect
+from notion.client import NotionClient
 
+notion_token = "324adbe39d1b03a9898527670c93546856531f91feb5b841898cf4d9616d2ec26b0c1bc59b5f3bf3be658ca42965c4c326875092110fda731eaaac7d1a021630f7a8677a659965a40188a15ce015"
 # Create your views here.
+notion_client = NotionClient(token_v2=notion_token) 
 def HomeView(request):
 
     if request.method == "GET":
@@ -19,8 +21,14 @@ def HomeView(request):
             email = form.cleaned_data['email']
             upload = form.cleaned_data["upload"]
             database_url = form.cleaned_data["database_url"]
+            link_url = form.cleaned_data["link_url"]
+
+            database = notion_client.get_block(database_url)
+            row = database.collection.add_row()
+
+            row.Daily_Tracking = link_url
             handle_upload(request.FILES["upload"])
-            NotionLoad()
+
 
             return HttpResponseRedirect('/succes/')
             
