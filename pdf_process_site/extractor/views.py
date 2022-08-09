@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import UploadForm
-from .apps import handle_upload
+from .scripts import handle_upload
 from django.http import HttpResponseRedirect
 from notion.client import NotionClient
 
