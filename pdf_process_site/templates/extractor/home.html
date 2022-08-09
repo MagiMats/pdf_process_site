@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Test!</h1>    
+<h1>Test!</h1> 
+
 <form action="{% url 'home' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+    
     {% for field in form %}
         <div><strong>{{field.label_tag}} </strong>  {{field}}</div>
         {% for error in field.errors %}
